@@ -12,15 +12,13 @@ import java.util.regex.Pattern;
 
 public class Main {
 
-	/**
-	 * @param args
-	 * @throws TransactionException
-	 */
+	
 	public static void main(String[] args) {
 
+		//suppress warning
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
-
+		
 		Bank hsbcBank = new Bank();
 
 		hsbcBank.setBankId(10);
@@ -53,8 +51,14 @@ public class Main {
 		
 		
 
-		System.out.println("Enter amount to make transaction ");
+		System.out.println("Enter amount to make  transaction1 ");
 		int amount = sc.nextInt();
+
+		// 1.doTransaction
+		services.doTransaction(amount);
+		
+		System.out.println("Enter amount to make transaction2 ");
+		amount = sc.nextInt();
 
 		// 1.doTransaction
 		services.doTransaction(amount);

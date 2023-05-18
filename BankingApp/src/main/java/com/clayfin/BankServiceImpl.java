@@ -27,8 +27,10 @@ public class BankServiceImpl implements BankServices {
 	@SuppressWarnings("static-access")
 	@Override
 	public void doTransaction(int amount) {
+		
+		ZoneId zoneId = bank.getZonedDateTime().getZone();
 
-		LocalDateTime startDateTime = bank.getZonedDateTime().now().toLocalDateTime();
+		LocalDateTime startDateTime = LocalDateTime.now(zoneId);
 
 		Transaction transaction = new Transaction();
 
@@ -45,10 +47,10 @@ public class BankServiceImpl implements BankServices {
 
 		}
 
-		LocalDateTime endDateTime = bank.getZonedDateTime().now().toLocalDateTime();
+		LocalDateTime endDateTime = LocalDateTime.now(zoneId);
 
 		Duration duration = Duration.between(startDateTime, endDateTime);
-		
+
 		transaction.setTimeTaken(duration);
 
 		// Period period = Period.between(startDateTime.toLocalDate(),
@@ -77,8 +79,8 @@ public class BankServiceImpl implements BankServices {
 			System.out.println("Password Accepted....");
 			return transactions;
 		}
-		
-		if(transactions.isEmpty())
+
+		if (transactions.isEmpty())
 			throw new TransactionException("No Transaction Yet ");
 
 		throw new TransactionException("Password Not Accepted...");
